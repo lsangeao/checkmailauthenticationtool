@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "checkmailauthenticationtool"
+version = "0.1.0"
+description = "This pack contains all stuff related to check authentication methods in email"
+authors = ["Laura Sangeao Fontán <lsangeao@uoc.edu>"]
+license = "GPL"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.10.12"
+dnspython = "^2.6.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+app-start = 'checkmailauthenticationtool.check_dmarc.main'
