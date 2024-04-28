@@ -22,5 +22,5 @@ wmi = ["wmi (>=1.5.1)"]
 
 [metadata]
 lock-version = "2.0"
-python-versions = "3.10.12"
-content-hash = "4bdfe14fadff87b7b5c546d0d90bb59b974a1bd72c53cd6ca4e7face1a67d664"
+python-versions = "3.10.5"
+content-hash = "2388e998310ef8fa9830b683081ee4570e91def155837eb31c08e6b5e3fd7c6c"

@@ -1,6 +1,30 @@
 import dns.resolver as dnsquery
 import json
+import csv
+import sys
 
+
+
+
+
+def read_csv(file_path):
+    """
+    Reads a CSV file and returns its contents as a dictionary.
+
+    Args:
+        file_path (str): The path to the CSV file.
+
+    Returns:
+        dict: A dictionary containing the contents of the CSV file.
+    """
+    data = {}
+    try:
+        with open(file_path, 'r') as file:
+            reader = csv.DictReader(file)
+            data = [row for row in reader]
+    except FileNotFoundError:
+        print(f"File '{file_path}' not found.")
+    return data
 
 def query_dns(domain,selector=''):
     """
@@ -43,11 +67,59 @@ def query_dns(domain,selector=''):
     
     return(result)
     
+def compare_dicts(dict1, dict2):
+    diff = {}
+    for key in dict1.keys() | dict2.keys():
+        domain=dict1.get("domain")
+        if dict1.get(key) != dict2.get(key):
+            diff[f"The domain {domain} has changes in {key} record"] = {'Current': dict1.get(key), 'Previous': dict2.get(key)}
+    return diff
 
-def main():   
-    r_domains=[]
-    r_domains.append(query_dns('uoc.com','mail'))
-    r_domains.append(query_dns('uned.es'))
+def main(args=sys.argv):
+    # Parse command-line arguments
+    f_domains=args[0]
+    p_domains=args[1]
 
-    print(json.dumps(r_domains, indent=4))
+    # Initialize variables
+    results=[]
+    mail_results=[]
+    
+    # Read Domains from CSV file
+    domains=read_csv(f_domains) 
+    
+    # Load previous results
+    with open( p_domains) as f:
+        previous_results = json.loads(f.read())
+    
+    # Query DNS records for each domain     
+    
+    for domain in domains:
+        c_domain_result=query_dns(domain["domain"],domain["selector"])
+        results.append(c_domain_result)
+        p_domain_result = [e for e in previous_results if e["domain"]==domain["domain"]]
+        diff=compare_dicts(c_domain_result,p_domain_result[0])
+        if len(diff)>0:
+            mail_results.append(diff)
+
+    # Save current results to file
+    with open('current_results.json', 'w') as f:
+        json.dump(results, f, indent=4)
+        
+   
+    #Revisar excepcion
+
+    print(len(mail_results))
+    # Convert mail_results to HTML table
+    string=""
+    try:
+        for i in mail_results:
+            key=list(i.keys())[0]
+            data=i[key]
+            string+=f"\n\n{key}:"
+            string+=f"\n\tPrevious: {data['Previous']}"
+            string+=f"\n\tCurrent: {data['Current']}"
+            print(string)
+    except:
+        exit()
+        
 

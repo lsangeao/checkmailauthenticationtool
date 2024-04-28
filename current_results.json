@@ -1,0 +1,32 @@
+[
+    {
+        "domain": "uoc.com",
+        "dmarc": [
+            1,
+            "v=DMARC1; p=reject; rua=mailto:rfmknyqj@ag.dmarcian.com; pct=100; "
+        ],
+        "spf": [
+            1,
+            "v=spf1 mx ip4:208.101.185.85 include:spf.constantcontact.com -all"
+        ],
+        "dkim": [
+            1,
+            "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+K36zYmbT52fFaEHmJxam0lS6KM+C+SILrj7JUxDAU/aRlCyIX61p69LUANTvesrfjo60Drro+byjsowHbcpea4X/t8RtCYHz3n42mMmnlhWErC4v3o8omj5nYj2eBT7J1i5jEf3m/PqFaUp+5bvHA9wGo7O3ASyBrqYHq4iczwIDAQAB"
+        ]
+    },
+    {
+        "domain": "uned.es",
+        "dmarc": [
+            1,
+            "v=DMARC1; p=quarantine; pct=100; rua=mailto:informes-dmarc@csi.uned.es"
+        ],
+        "spf": [
+            1,
+            "v=spf1 ip4:62.204.192.0/19 ip6:2a01:4a80::/32  include:spf.protection.outlook.com -all"
+        ],
+        "dkim": [
+            1,
+            "Unable to get DKIM record for \"uned.es\" with selector \"\""
+        ]
+    }
+]

@@ -7,7 +7,7 @@ license = "GPL"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.10.12"
+python = "3.10.5"
 dnspython = "^2.6.1"
 
 
@@ -16,4 +16,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-app-start = 'checkmailauthenticationtool.check_dmarc.main'
+app-start = 'checkmailauthenticationtool.check_dmarc:main(["tests/mocks/domains.csv","tests/mocks/domains1.json"])'
