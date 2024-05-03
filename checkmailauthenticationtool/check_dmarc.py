@@ -104,22 +104,18 @@ def main(args=sys.argv):
     # Save current results to file
     with open('current_results.json', 'w') as f:
         json.dump(results, f, indent=4)
-        
-   
-    #Revisar excepcion
 
-    print(len(mail_results))
+   
     # Convert mail_results to HTML table
-    string=""
-    try:
-        for i in mail_results:
-            key=list(i.keys())[0]
-            data=i[key]
-            string+=f"\n\n{key}:"
-            string+=f"\n\tPrevious: {data['Previous']}"
-            string+=f"\n\tCurrent: {data['Current']}"
-            print(string)
-    except:
-        exit()
-        
+    strtext=""
+    
+    for element in mail_results:
+        key=list(element.keys())[0]
+        data=element[key]
+        strtext+=f"\n\n{key}:"
+        strtext+=f"\n\tPrevious: {data['Previous']}"
+        strtext+=f"\n\tCurrent: {data['Current']}"
+    
+    print(strtext)
+    exit()
 

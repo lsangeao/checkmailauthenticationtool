@@ -16,4 +16,5 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-app-start = 'checkmailauthenticationtool.check_dmarc:main(["tests/mocks/domains.csv","tests/mocks/domains1.json"])'
+app-start = 'checkmailauthenticationtool.check_dmarc:main(["domains.csv","current_results.json"])'
+app-test = 'checkmailauthenticationtool.check_dmarc:main(["tests/mocks/domains.csv","tests/mocks/domains1.json"])'
