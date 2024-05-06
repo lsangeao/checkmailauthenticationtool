@@ -2,7 +2,7 @@ name: Schedule Run Code and Send Email
 
 on:
   schedule:
-    - cron: '05 14 * * *' # This will run the workflow every day at midnight
+    - cron: '25 17 * * *' # This will run the workflow every day at midnight
 
 jobs:
   build:
