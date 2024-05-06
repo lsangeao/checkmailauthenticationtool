@@ -28,17 +28,18 @@ jobs:
 
     - name: Run script
       run: |
-        poetry run app-start > output.txt
-        cat output.txt
-    - name: Send email
-      uses: dawidd6/action-send-mail@v3
-      with:
-        server_address: smtp.gmail.com
-        server_port: 465
-        secure: true
-        username: ${{ secrets.MAIL_USERNAME }}
-        password: ${{ secrets.MAIL_PASSWORD }}
-        subject: GitHub Action result
-        body: file://output.txt
-        to: ${{ secrets.MAIL_TO }}
-        from: ${{ secrets.MAIL_FROM }}
+        poetry run app-test 
+        poetry run app-start 
+        
+        #    - name: Send email
+        #uses: dawidd6/action-send-mail@v3
+        #with:
+        #server_address: smtp.gmail.com
+        #server_port: 465
+        #secure: true
+        #username: ${{ secrets.MAIL_USERNAME }}
+        #password: ${{ secrets.MAIL_PASSWORD }}
+        #subject: GitHub Action result
+        #body: file://output.txt
+        #to: ${{ secrets.MAIL_TO }}
+        #from: ${{ secrets.MAIL_FROM }}
