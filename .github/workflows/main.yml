@@ -31,9 +31,13 @@ jobs:
     - name: Run script
       run: |
         poetry run app-start > output.txt 
+        
+        echo "After run" 
+        cat output.txt
         if [[ $( wc -l output.txt) == 0 ]];then
           echo "There are no changes" > output.txt
         fi
+        echo "After check" 
         cat output.txt
     - name: Send email
       uses: dawidd6/action-send-mail@v3
@@ -44,7 +48,7 @@ jobs:
         username: ${{ secrets.MAIL_USERNAME }}
         password: ${{ secrets.MAIL_PASSWORD }}
         subject: Check domain authentication result
-        body: output.txt
+        body: file://output.txt
         attachments: current_results.csv
         to: ${{ secrets.MAIL_TO }}
         from: ${{ secrets.MAIL_FROM }}
