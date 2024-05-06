@@ -101,12 +101,25 @@ def main(args=sys.argv):
         if len(diff)>0:
             mail_results.append(diff)
 
-    # Save current results to file
+    # Save current results to json file
     with open('current_results.json', 'w') as f:
         json.dump(results, f, indent=4)
+    
+    # Save current results to csv file
+    with open('current_results.csv', 'w') as f:
+        f.write('domain,dmarc,spf,dkim\n')
+        for e in results:
+            domain=e['domain']
+            dmarc= e['dmarc'][1]
+            spf= e['spf'][1]
+            dkim= e['dkim'][1]
+            f.write(f" {domain} , {dmarc} , {spf} , {dkim} \n")
+            
 
-   
-    # Convert mail_results to HTML table
+        
+        
+        
+    # Prettyfy mail_results 
     strtext=""
     
     for element in mail_results:
@@ -117,5 +130,6 @@ def main(args=sys.argv):
         strtext+=f"\n\tCurrent: {data['Current']}"
     
     print(strtext)
+
     exit()
 
