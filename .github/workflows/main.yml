@@ -23,11 +23,12 @@ jobs:
 
     - name: Install dependencies
       run: |
+        cd checkmailauthenticationtool
         poetry install
 
     - name: Run script
       run: |
-        poetry run python check_dmarc.py > output.txt
+        poetry run app-start > output.txt
 
     - name: Send email
       uses: dawidd6/action-send-mail@v2
