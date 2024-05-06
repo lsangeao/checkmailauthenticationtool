@@ -8,7 +8,7 @@ import sys
 
 def write_results(results):
     # Save current results to csv file
-    with open('current_results.csv', 'w') as f:
+    with open('files/current_results.csv', 'w') as f:
         f.write('domain,dmarc,spf,dkim\n')
         for e in results:
             domain=e['domain']
@@ -17,7 +17,7 @@ def write_results(results):
             dkim= e['dkim'][1]
             f.write(f"{domain},{dmarc},{spf},{dkim}\n")
     # Save current results to json file
-    with open('current_results.json', 'w') as f:
+    with open('files/current_results.json', 'w') as f:
         json.dump(results, f, indent=4)
 
 def read_csv(file_path):
@@ -132,7 +132,7 @@ def main(args=sys.argv):
     if len(strtext) == 0:
         strtext = "There are no changes"
     
-    with open('output.txt','w') as f:
+    with open('files/output.txt','w') as f:
         f.write(strtext)
 
     exit()

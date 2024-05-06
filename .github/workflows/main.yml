@@ -40,7 +40,7 @@ jobs:
         username: ${{ secrets.MAIL_USERNAME }}
         password: ${{ secrets.MAIL_PASSWORD }}
         subject: Check domain authentication result
-        body: file://output.txt
-        attachments: current_results.csv
+        body: file://files/output.txt
+        attachments: files/current_results.csv
         to: ${{ secrets.MAIL_TO }}
         from: ${{ secrets.MAIL_FROM }}
