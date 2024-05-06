@@ -30,6 +30,9 @@ jobs:
       run: |
         poetry run app-test 
         poetry run app-start > output.txt 
+        if [[ $( wc -l output.txt) == 0 ]];then
+          echo "There are no changes" > output.txt
+        fi
        
     - name: Send email
       uses: dawidd6/action-send-mail@v3
@@ -41,5 +44,6 @@ jobs:
         password: ${{ secrets.MAIL_PASSWORD }}
         subject: GitHub Action result
         body: file://output.txt
+        attachments: current_results.json
         to: ${{ secrets.MAIL_TO }}
         from: ${{ secrets.MAIL_FROM }}
