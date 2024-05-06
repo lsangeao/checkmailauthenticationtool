@@ -34,6 +34,7 @@ jobs:
         if [[ $( wc -l output.txt) == 0 ]];then
           echo "There are no changes" > output.txt
         fi
+        cat output.txt
     - name: Send email
       uses: dawidd6/action-send-mail@v3
       with:
@@ -43,7 +44,7 @@ jobs:
         username: ${{ secrets.MAIL_USERNAME }}
         password: ${{ secrets.MAIL_PASSWORD }}
         subject: Check domain authentication result
-        body: file://output.txt
+        body: output.txt
         attachments: current_results.csv
         to: ${{ secrets.MAIL_TO }}
         from: ${{ secrets.MAIL_FROM }}
