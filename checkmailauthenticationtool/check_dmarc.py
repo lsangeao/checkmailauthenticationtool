@@ -124,9 +124,13 @@ def main(args=sys.argv):
     for element in mail_results:
         key=list(element.keys())[0]
         data=element[key]
-        strtext+=f"\n\n{key}:"
-        strtext+=f"\n\tPrevious: {data['Previous']}"
-        strtext+=f"\n\tCurrent: {data['Current']}"
+        strtext+=f"{key}:"
+        strtext+=f"\n\tPrevious: {data['Previous'][1]}"
+        strtext+=f"\n\tCurrent: {data['Current'][1]}\n\n"
+    
+    
+    if len(strtext) == 0:
+        strtext = "There are no changes"
     
     with open('output.txt','w') as f:
         f.write(strtext)
