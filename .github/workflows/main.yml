@@ -25,10 +25,11 @@ jobs:
       run: |
         cd checkmailauthenticationtool
         poetry install
-
-    - name: Run script
+    - name: Run script test
       run: |
         poetry run app-test 
+    - name: Run script
+      run: |
         poetry run app-start > output.txt 
         if [[ $( wc -l output.txt) == 0 ]];then
           echo "There are no changes" > output.txt
