@@ -31,10 +31,11 @@ jobs:
         poetry run app-start > output.txt
 
     - name: Send email
-      uses: dawidd6/action-send-mail@v2
+      uses: dawidd6/action-send-mail@v3
       with:
         server_address: smtp.gmail.com
         server_port: 465
+        secure: true
         username: ${{ secrets.MAIL_USERNAME }}
         password: ${{ secrets.MAIL_PASSWORD }}
         subject: GitHub Action result
