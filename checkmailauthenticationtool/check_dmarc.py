@@ -6,6 +6,19 @@ import sys
 
 
 
+def write_results(results):
+    # Save current results to csv file
+    with open('current_results.csv', 'w') as f:
+        f.write('domain,dmarc,spf,dkim\n')
+        for e in results:
+            domain=e['domain']
+            dmarc= e['dmarc'][1]
+            spf= e['spf'][1]
+            dkim= e['dkim'][1]
+            f.write(f"{domain},{dmarc},{spf},{dkim}\n")
+    # Save current results to json file
+    with open('current_results.json', 'w') as f:
+        json.dump(results, f, indent=4)
 
 def read_csv(file_path):
     """
@@ -101,24 +114,10 @@ def main(args=sys.argv):
         if len(diff)>0:
             mail_results.append(diff)
 
-    # Save current results to json file
-    with open('current_results.json', 'w') as f:
-        json.dump(results, f, indent=4)
-    
-    # Save current results to csv file
-    with open('current_results.csv', 'w') as f:
-        f.write('domain,dmarc,spf,dkim\n')
-        for e in results:
-            domain=e['domain']
-            dmarc= e['dmarc'][1]
-            spf= e['spf'][1]
-            dkim= e['dkim'][1]
-            f.write(f" {domain} , {dmarc} , {spf} , {dkim} \n")
-            
 
-        
-        
-        
+    # Save results
+    write_results(results)        
+
     # Prettyfy mail_results 
     strtext=""
     
@@ -129,7 +128,8 @@ def main(args=sys.argv):
         strtext+=f"\n\tPrevious: {data['Previous']}"
         strtext+=f"\n\tCurrent: {data['Current']}"
     
-    print(strtext)
+    with open('output.txt','w') as f:
+        f.write(strtext)
 
     exit()
 

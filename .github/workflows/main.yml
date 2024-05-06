@@ -30,15 +30,7 @@ jobs:
         poetry run app-test 
     - name: Run script
       run: |
-        poetry run app-start > output.txt 
-        
-        echo "After run" 
-        cat output.txt
-        if [[ $( wc -l output.txt) == 0 ]];then
-          echo "There are no changes" > output.txt
-        fi
-        echo "After check" 
-        cat output.txt
+        poetry run app-start 
     - name: Send email
       uses: dawidd6/action-send-mail@v3
       with:
