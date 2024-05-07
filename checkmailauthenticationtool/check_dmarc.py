@@ -143,7 +143,8 @@ def main(args=sys.argv):
         c_domain_result=query_dns(domain["domain"],domain["selector"])
         results.append(c_domain_result)
         p_domain_result = [e for e in previous_results if e["domain"]==domain["domain"]]
-        diff=compare_dicts(c_domain_result,p_domain_result[0])
+        if p_domain_result != []:
+            diff=compare_dicts(c_domain_result,p_domain_result[0])
         if len(diff)>0:
             mail_results.append(diff)
 
