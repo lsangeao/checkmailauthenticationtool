@@ -7,14 +7,25 @@ import sys
 
 
 def write_results(results):
+    """
+    Writes the given results to a CSV file and a JSON file.
+
+    Args:
+        results (list): A list of dictionaries containing the results to be written.
+            Each dictionary should have the following keys:
+            - 'domain': The domain name.
+            - 'dmarc': A tuple containing the DMARC result.
+            - 'spf': A tuple containing the SPF result.
+            - 'dkim': A tuple containing the DKIM result.
+    """
     # Save current results to csv file
     with open('files/current_results.csv', 'w') as f:
         f.write('domain,dmarc,spf,dkim\n')
         for e in results:
-            domain=e['domain']
-            dmarc= e['dmarc'][1]
-            spf= e['spf'][1]
-            dkim= e['dkim'][1]
+            domain = e['domain']
+            dmarc = e['dmarc'][1]
+            spf = e['spf'][1]
+            dkim = e['dkim'][1]
             f.write(f"{domain},{dmarc},{spf},{dkim}\n")
     # Save current results to json file
     with open('files/current_results.json', 'w') as f:
@@ -59,6 +70,7 @@ def query_dns(domain,selector=''):
 
     except:
         dmarc=[f'Unable to get DMARC record for "{domain}"']
+   
     try:
         spf = [str(x).split('"')[1]  for x in dnsquery.resolve(domain , 'TXT').rrset if 'v=spf1' in str(x)] 
     except:
@@ -68,8 +80,8 @@ def query_dns(domain,selector=''):
         dkim = [str(x).split('"')[1]  for x in dnsquery.resolve(selector + '._domainkey.' + domain , 'TXT').rrset if 'v=DKIM1' in str(x)]     
     except:
         dkim=[f'Unable to get DKIM record for "{domain}" with selector "{selector}"']
-    
-    
+
+        
     result={
         "domain": domain,
         "dmarc": [len(dmarc), ','.join(dmarc)],
@@ -81,14 +93,35 @@ def query_dns(domain,selector=''):
     return(result)
     
 def compare_dicts(dict1, dict2):
+    """
+    Compare two dictionaries and return the differences between them.
+
+    Args:
+        dict1 (dict): The first dictionary to compare.
+        dict2 (dict): The second dictionary to compare.
+
+    Returns:
+        dict: A dictionary containing the differences between dict1 and dict2.
+              The keys of the returned dictionary are the fields that have changed,
+              and the values are dictionaries with 'Current' and 'Previous' keys
+              representing the current and previous values of the field, respectively.
+    """
     diff = {}
     for key in dict1.keys() | dict2.keys():
-        domain=dict1.get("domain")
+        domain = dict1.get("domain")
         if dict1.get(key) != dict2.get(key):
             diff[f"The domain {domain} has changes in {key} record"] = {'Current': dict1.get(key), 'Previous': dict2.get(key)}
     return diff
 
+
 def main(args=sys.argv):
+    """
+    Main function that performs the DMARC check for a list of domains.
+
+    Args:
+        args (list): List of command-line arguments.
+    """
+    
     # Parse command-line arguments
     f_domains=args[0]
     p_domains=args[1]
@@ -115,25 +148,25 @@ def main(args=sys.argv):
             mail_results.append(diff)
 
 
-    # Save results
+    # Save results to files
+    
     write_results(results)        
 
-    # Prettyfy mail_results 
-    strtext=""
-    
+    # Prettify mail_results 
+    str_text=""
     for element in mail_results:
         key=list(element.keys())[0]
         data=element[key]
-        strtext+=f"{key}:"
-        strtext+=f"\n\tPrevious: {data['Previous'][1]}"
-        strtext+=f"\n\tCurrent: {data['Current'][1]}\n\n"
+        str_text+=f"{key}:"
+        str_text+=f"\n\tPrevious: {data['Previous'][1]}"
+        str_text+=f"\n\tCurrent: {data['Current'][1]}\n\n"
     
     
-    if len(strtext) == 0:
-        strtext = "There are no changes"
+    if len(str_text) == 0:
+        str_text = "There are no changes"
     
     with open('files/output.txt','w') as f:
-        f.write(strtext)
+        f.write(str_text)
 
     exit()
 
