@@ -39,6 +39,8 @@ Once you have a copy of the repository, you can proceed to adapt it to your need
 > If you don't know your selector, ask your DNS provider.
 > If you don't fill the selector, dkim will not be verified.
 
+- Change [workflow permissions](https://github.com/ad-m/github-push-action/issues/96#issuecomment-1740080754)
+
 ## Local Installation
 
 ```bash
