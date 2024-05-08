@@ -28,5 +28,20 @@
             1,
             "Unable to get DKIM record for \"uned.es\" with selector \"\""
         ]
+    },
+    {
+        "domain": "udc.es",
+        "dmarc": [
+            1,
+            "v=DMARC1; p=quarantine; sp=quarantine;"
+        ],
+        "spf": [
+            1,
+            "v=spf1 ip4:193.144.48.106 ip4:193.144.48.107 ip4:193.144.48.108 ip4:193.144.48.109 include:spf.protection.outlook.com ~all"
+        ],
+        "dkim": [
+            1,
+            "Unable to get DKIM record for \"udc.es\" with selector \"mail\""
+        ]
     }
 ]
