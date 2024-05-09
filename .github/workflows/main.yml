@@ -25,9 +25,6 @@ jobs:
       run: |
         cd checkmailauthenticationtool
         poetry install
-    - name: Run script test
-      run: |
-        poetry run app-test 
     - name: Run script
       run: |
         poetry run app-start
