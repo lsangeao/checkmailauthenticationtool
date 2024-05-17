@@ -43,6 +43,13 @@ Once you have a copy of the repository, you can proceed to adapt it to your need
 
 ## Local Installation
 
+Local Installation is only for testing purposes.
+
+
+This project requires:
+- python 3.10.5 or higher (Default in Ubuntu 22.04)
+- poetry : ```curl -sSL https://install.python-poetry.org | python3 -```
+
 ```bash
 git clone https://github.com/lsangeao/checkmailauthenticationtool.git
 
@@ -53,7 +60,7 @@ poetry install
 
 ### Usage
 
-Edit the [domains.csv](checkmailauthenticationtool/blob/main/domains.csv) file as follow:
+Edit the [domains.csv](domains.csv) file as follow:
 
 ```csv
 domain,selector
@@ -64,11 +71,25 @@ domain,selector
 If you don't know your selector, ask your DNS provider.
 If you don't fill the selector, dkim will not be verified.
 
-``` poetry run app-start ```
+```bash 
+    poetry run app-start 
+    cat files/output.txt
+```
 
-You can run a test runnign the following command:
+
+#### Test
+
+There is a file [test/mocks/domains.csv](tests/mocks/domains.csv) to perform tests
+If you want to force differences , you should edit the file [test/mocks/domains1.json](tests/mocks/domains1.json)
+
+You can run a test running the following command:
 
 ``` poetry run app-test ```
+
+You can check the result in the file: [files/output.txt](files/output.txt)
+
+
+
 
 ## Contributing
 

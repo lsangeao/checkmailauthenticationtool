@@ -34,10 +34,8 @@ def write_results(results):
 def read_csv(file_path):
     """
     Reads a CSV file and returns its contents as a dictionary.
-
     Args:
         file_path (str): The path to the CSV file.
-
     Returns:
         dict: A dictionary containing the contents of the CSV file.
     """
@@ -53,11 +51,9 @@ def read_csv(file_path):
 def query_dns(domain,selector=''):
     """
     Queries DNS records for a given domain and returns information about DMARC, SPF, and DKIM records.
-
     Args:
         domain (str): The domain to query DNS records for.
         selector (str, optional): The DKIM selector (if applicable). Defaults to ''.
-
     Returns:
         dict: A dictionary containing the following information:
             - 'domain': The queried domain.
@@ -70,7 +66,7 @@ def query_dns(domain,selector=''):
 
     except:
         dmarc=[f'Unable to get DMARC record for "{domain}"']
-   
+
     try:
         spf = [str(x).split('"')[1]  for x in dnsquery.resolve(domain , 'TXT').rrset if 'v=spf1' in str(x)] 
     except:
@@ -102,9 +98,9 @@ def compare_dicts(dict1, dict2):
 
     Returns:
         dict: A dictionary containing the differences between dict1 and dict2.
-              The keys of the returned dictionary are the fields that have changed,
-              and the values are dictionaries with 'Current' and 'Previous' keys
-              representing the current and previous values of the field, respectively.
+            The keys of the returned dictionary are the fields that have changed,
+            and the values are dictionaries with 'Current' and 'Previous' keys
+            representing the current and previous values of the field, respectively.
     """
     diff = {}
     for key in dict1.keys() | dict2.keys():
@@ -162,10 +158,11 @@ def main(args=sys.argv):
         str_text+=f"\n\tPrevious: {data['Previous'][1]}"
         str_text+=f"\n\tCurrent: {data['Current'][1]}\n\n"
     
-    
+    # Verify if there are changes
     if len(str_text) == 0:
         str_text = "There are no changes"
     
+    # Write results file
     with open('files/output.txt','w') as f:
         f.write(str_text)
 
