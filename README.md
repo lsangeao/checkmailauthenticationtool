@@ -28,7 +28,7 @@ Once you have a copy of the repository, you can proceed to adapt it to your need
 
 - Change the schedule by editing the line 5 on [this](checkmailauthenticationtool/blob/main/.github/workflows/main.yml) file. If you are not familiar with crontab expressions this [link](https://crontab.guru/) can be helpful for you.
 
-- Edit the [domains.csv](checkmailauthenticationtool/blob/main/domains.csv) file as follow:
+- Edit the [files/domains.csv](files/domains.csv) file as follow:
 
     ```csv
     domain,selector
@@ -60,7 +60,7 @@ poetry install
 
 ### Usage
 
-Edit the [domains.csv](domains.csv) file as follow:
+Edit the [files/domains.csv](files/domains.csv) file as follow:
 
 ```csv
 domain,selector
