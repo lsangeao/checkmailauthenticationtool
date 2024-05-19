@@ -1,1 +1,4 @@
-There are no changes
+The domain uoc.com has changes in spf record:
+	Previous: v=spf1 mx ip4:208.101.185.85 include:spf.constantcontact.com -all
+	Current: v=spf1 mx ip4:66.194.55.244 include:spf.constantcontact.com -all
+

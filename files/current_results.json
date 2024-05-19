@@ -7,7 +7,7 @@
         ],
         "spf": [
             1,
-            "v=spf1 mx ip4:208.101.185.85 include:spf.constantcontact.com -all"
+            "v=spf1 mx ip4:66.194.55.244 include:spf.constantcontact.com -all"
         ],
         "dkim": [
             1,
