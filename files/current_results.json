@@ -55,8 +55,8 @@
             "v=spf1 mx ip4:82.98.151.211 ip4:34.141.90.172 ip4:34.107.47.119 include:spf.protection.outlook.com include:spf0.unir.net -all"
         ],
         "dkim": [
-            0,
-            ""
+            1,
+            "Unable to get DKIM record for \"unir.net\" with selector \"None\""
         ]
     }
 ]
