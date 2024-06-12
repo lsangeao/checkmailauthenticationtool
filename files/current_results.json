@@ -45,18 +45,18 @@
         ]
     },
     {
-        "domain": "usc.es",
+        "domain": "unir.net",
         "dmarc": [
             1,
-            "v=DMARC1; p=none; fo=1; rua=mailto:atic.correo.dmarc.rua@usc.es; ruf=mailto:atic.correo.dmarc.ruf@usc.es"
+            "v=DMARC1; p=quarantine; rua=mailto:notificaciones.dmarc@unirnet.onmicrosoft.com; ruf=mailto:notificaciones.dmarc@unirnet.onmicrosoft.com; pct=100;"
         ],
         "spf": [
             1,
-            "v=spf1 ip4:193.144.75.0/24 include:spf.protection.outlook.com include:spf-eu.exlibrisgroup.com -all"
+            "v=spf1 mx ip4:82.98.151.211 ip4:34.141.90.172 ip4:34.107.47.119 include:spf.protection.outlook.com include:spf0.unir.net -all"
         ],
         "dkim": [
-            1,
-            "Unable to get DKIM record for \"usc.es\" with selector \"mail\""
+            0,
+            ""
         ]
     }
 ]
