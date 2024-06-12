@@ -2,7 +2,7 @@ name: Schedule Run Code and Send Email
 
 on:
   schedule:
-    - cron: '29 18 * * *' # This will run the workflow every day at midnight
+    - cron: '29 18 * * *' # This will run the workflow every day at 18:29
   workflow_dispatch:  # Allows manual triggering
 jobs:
   build:
