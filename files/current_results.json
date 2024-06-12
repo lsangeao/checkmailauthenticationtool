@@ -58,5 +58,20 @@
             1,
             "Unable to get DKIM record for \"unir.net\" with selector \"None\""
         ]
+    },
+    {
+        "domain": "usc.es",
+        "dmarc": [
+            1,
+            "v=DMARC1; p=none; fo=1; rua=mailto:atic.correo.dmarc.rua@usc.es; ruf=mailto:atic.correo.dmarc.ruf@usc.es"
+        ],
+        "spf": [
+            1,
+            "v=spf1 ip4:193.144.75.0/24 include:spf.protection.outlook.com include:spf-eu.exlibrisgroup.com -all"
+        ],
+        "dkim": [
+            1,
+            "Unable to get DKIM record for \"usc.es\" with selector \"None\""
+        ]
     }
 ]
