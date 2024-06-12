@@ -26,7 +26,7 @@ Once you have a copy of the repository, you can proceed to adapt it to your need
 |MAIL_TO|Email Recipients|
 |MAIL_FROM|Email Sender|
 
-- Change the schedule by editing the line 5 on [this](checkmailauthenticationtool/blob/main/.github/workflows/main.yml) file. If you are not familiar with crontab expressions this [link](https://crontab.guru/) can be helpful for you.
+- Change the schedule by editing the line 5 on [this](.github/workflows/main.yml) file. If you are not familiar with crontab expressions this [link](https://crontab.guru/) can be helpful for you.
 
 - Edit the [files/domains.csv](files/domains.csv) file as follow:
 
