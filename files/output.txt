@@ -1,1 +1,4 @@
-There are no changes
+The domain udc.es has changes in spf record:
+	Previous: v=spf1 ip4:193.144.48.106 ip4:193.144.48.107 ip4:193.144.48.108 ip4:193.144.48.109 include:spf.protection.outlook.com ~all
+	Current: v=spf1 ip4:193.144.48.106 ip4:193.144.48.107 ip4:193.144.48.108 ip4:193.144.48.109 include:spf.protection.outlook.com -all
+

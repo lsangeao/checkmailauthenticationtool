@@ -37,7 +37,7 @@
         ],
         "spf": [
             1,
-            "v=spf1 ip4:193.144.48.106 ip4:193.144.48.107 ip4:193.144.48.108 ip4:193.144.48.109 include:spf.protection.outlook.com ~all"
+            "v=spf1 ip4:193.144.48.106 ip4:193.144.48.107 ip4:193.144.48.108 ip4:193.144.48.109 include:spf.protection.outlook.com -all"
         ],
         "dkim": [
             1,
